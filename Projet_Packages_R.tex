@@ -1,0 +1,538 @@
+%==================================================================================================================%
+%
+%=======================================-Lundi le 09/11/2020 06:36-======================================%
+%
+%%%%**************************************~~Arnaud Bruel YANKO KOUATCHOU~~***************************************%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%    %%%%%%    %%%%%%%%     %%%%%%%%    %%  %%%%%%        %%%%%%%%       %%%%%%%%%%%%%%%%%%%%%%%%
+%%%********%%%%%%%%%  %  %%%%  %  %%%%%%%   %   %%%%%%%  %  %  %%%%%%  %%%%%%%%%%%%%%  %%%%%%%%%%%%%********%%%%%%%%
+%%%********%%%%%%%%%  %%  %%  %%  %%%%%%%  %%%  %%%%%%%  %%    %%%%%%  %%    %%%%%%%%      %%%%%%%%%********%%%%%%%%
+%%%********%%%%%%%%%  %%%    %%%  %%%%%%%   %   %%%%%%%  %%%   %%%%%%  %%%%  %%%%%%%%  %%%%%%%%%%%%%********%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%  %%%%  %%%%  %%%%%%%%     %%%%%%%%  %%%%  %%%%%%        %%%%%%%%       %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------------------------------------------%
+% ***************************-HELLO PSB 2020-2022-***************
+%                                                 PRÉAMBULE
+% =================================================================================================================
+% =========     ====     =====       =======  =======    =======    ===     ====  ===  ===  ========      =========
+% =========  ==  ===  ==  ====  ===========    ======  =  =====  =  ===  ==  ===  ===  ===  ========  =============
+% =========     ====     =====      ======  ==  =====  ==  ===  ==  ===     ====  ===  ===  ========     ==========
+% =========  =======  ==  ====  =========        ====  ====   ====  ===  ==  ===  ==   ===  ========  =============
+% =========  =======  ===  ===       ===   ====   ===  ===========  ===     ====    =  ===       ===       ========
+% =================================================================================================================
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[T1]{fontenc}%------------------------------------->% permet d'écrire  directement avec les absents
+\usepackage[frenchb]{babel}%---------------------------------->% code les règle typogragiques françaises
+%%\usepackage{hyperref}
+
+\usepackage[latin1]{inputenc}%-------------------------------->% codage du fichier source
+\usepackage{latexsym}%---------------------------------------->% des symboles courants
+\usepackage{pdfpages}%---------------------------------------->% permet d’ inclure des fichiers entiers pdf
+\usepackage{xspace}%------------------------------------------>% pour ne pas taper les accolades à la fin de certaines commandes si l’onveut un espace derrière ex 1\ier exercice au lieu d e 1\ier{}
+\usepackage{amscd}%------------------------------------------->% permet la construction de diagrammes commutatifs voir latex-bemaer-p74
+\usepackage{amsthm, amssymb,amsmath,eufrak,amsfonts}%--------->% permet de produire des formules et symboles mathematiques compliquées
+\usepackage{graphicx}%---------------------------------------->% importer des figure dans le document
+\usepackage{dsfont}%------------------------------------------>% permet d'utiliser mathds
+\usepackage{Lettrine}%---------------------------------------->% permmet deproduire lettrine \lettrine{Elle} ou \lettrine{E}lle
+\usepackage[french2]{minitoc}%-------------------------------->% permet d'avoir des mini-tables de matière en français "sommaire"
+\usepackage{xcolor,rotating,epic,eepic}%---------------------->% couleurs, rotation d'un texte
+\usepackage{pgf, tikz}%--------------------------------------->% permet de déssiner directement dans le fichié source
+\usetikzlibrary{calc,through,backgrounds}
+\usepgflibrary{decorations.footprints}
+\usetikzlibrary{decorations.footprints}
+\usepackage{fancybox}%---------------------------------------->% fancybox permet de produire cadre ombre noire
+\usepackage{enumerate}%--------------------------------------->% un joli package qui améliore l'environnement enumerate du au celèbre "David Car-lisle"
+\usepackage{expdlist}%---------------------------------------->% permet d'insérer un paragraphe dans une liste sans en boulverser la numérotation
+\usepackage{array}%------------------------------------------->% pour produire des paragraphe centré dans un tableau
+\usepackage{delarray}%---------------------------------------->% package qui améliore l'environnement array (facilite les choses)
+\usepackage{tabularx}%---------------------------------------->% pour tableau X
+\usepackage{wrapfig}%----------------------------------------->% Pour mettre du texte autour d’une figure
+\usepackage{pbsi,bbold,aurical,calligra}%--------------------->% fonte
+\usepackage{bbding}
+\usepackage{mathrsfs}%---------------------------------------->% pour \mathscr
+\usepackage{times}%%
+\usepackage{hyperref}
+%\usepackage[colorlinks=true,breaklinks=true,linkcolor=blue]{hyperref}
+\hypersetup{
+	pdfauthor   = {Moi},
+	pdftitle    = {C V},
+	colorlinks=true,
+	breaklinks=true,
+	urlcolor= blue,
+	linkcolor= blue,
+	pdfcreator  = {\LaTeX},
+	pdfproducer = {Kile}
+}
+
+%%
+%%=================================================================================================================
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GÉOMÉTRIE DE LA FUEILLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%=================================================================================================================
+%%
+%%
+\pagestyle{headings}
+\usepackage{geometry}%|--------------------------------------->% difini les differentes dimention de chaque page
+\geometry{%
+left=2.5cm,right =2.5cm,  %|---------------------------------->% fixe les marges à gauche et à droite
+top =2.5cm,bottom=2.5cm,   %|--------------------------------->% fixe les marges en haut et en bas
+marginparwidth=1.2cm, marginparsep=3mm %---------------------->% indique la largeur des notes marginales
+ }
+\linespread{1.5}%--------------------------------------------->% l'interligne
+%%
+%%
+%==================================================================================================================
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENTÊTE ET PIED DE PAGE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%==================================================================================================================
+%%
+%%
+\usepackage{fancyhdr}%---------------------------------------->% pour l'entête et pied de page
+\pagestyle{fancy} %%% Left Even, Right Odd
+%=================================================  EN-TÊTE : =====================================================
+%%
+\fancyhf{}%--------------------------------------------------->% supprime les en-têtes et pieds predefines
+%\fancyhead[L]{\nouppercase{\bfseries\leftmark}}%-------------->% [Left]=[gauche] écrire en minuscule et en gras le nom du chapitre courant
+\fancyhead[L]{\nouppercase{\bfseries\rightmark}}%------------->% [Right]=[droite] écrire en minuscule et en gras la section courante
+\renewcommand{\headrulewidth}{2pt}%--------------------------->% un trait en haut de page d'épaiceur 2 points
+%%
+%================================================  PIED DE PAGE : =================================================
+%%
+\fancyfoot[L]{%
+\footnotesize{\textbf{     Projet R           }}}%-------------->% pied de page à gauche
+\fancyfoot[R]{%
+\footnotesize{{\bsc{  PSB 2020-2022}}}}%------->% idem
+\fancyfoot[c]{%
+\fcolorbox{black}{gray}{\color{white}\textbf{\thepage}}}
+\renewcommand{\footrulewidth}{1pt}%--------------------------->% épaisseur des traits
+%%
+\fancypagestyle{plain}{ %------------------------------------->% pages de tetes de chapitre
+\fancyhead{}            %------------------------------------->% supprime l'entete
+\fancyfoot{}            %------------------------------------->% supprime le pied de page
+\fancyfoot[L]{%
+\footnotesize{\textbf{       Projet R         }}}%-------------->% pied de page à gauche
+\fancyfoot[R]{%
+\footnotesize{{\bsc{ PSB 2020-2022}}}}%------->% idem
+\fancyfoot[c]{%
+\fcolorbox{black}{gray}{\color{white}\textbf{\emph{\thepage}}}}
+\renewcommand{\headrulewidth}{0pt} % et le filet
+\renewcommand{\footrulewidth}{1pt}
+}
+\fancypagestyle{myheadings}{\fancyhf{}%
+\fancyhead[L]{\bfseries Introduction}%
+\fancyfoot[L]{%
+\footnotesize{\textbf{      Projet R      }}}%-------------->% pied de page à gauche
+\fancyfoot[R]{%
+\footnotesize{{\bsc{ PSB 2020-2022}}}}%------->% idem
+\fancyfoot[c]{%
+\fcolorbox{black}{gray}{\color{white}\textbf{\thepage}}}
+\renewcommand{\headrulewidth}{1.pt}%
+\renewcommand{\footrulewidth}{1pt}}
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~NEWTHEOREME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%
+\newtheorem{propriete}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Propriété}}}[section]
+\newtheorem{definition}{\textbf{Définition}}[section]
+\newtheorem{lem}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Lemme}}}[section]
+\newtheorem{pro}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Proposition}}}[section]
+\newtheorem{cor}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Corollaire}}}[section]
+\newtheorem{consequence}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Conséquence}}}[section]
+\newtheorem{theoreme}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Théorème}}}[section]
+\newtheorem{thmetdefn}{Théorème et Définition}[section]
+\newtheorem{rappel}{Rappels}[section]
+\theoremstyle{definition}%------------------------------------>% permet de ne pas écrire le contenu de ce qui suit en italique
+\newtheorem{ex}{\textbf{Exemple}}[section]
+\newtheorem{notation}{\textbf{Notation}}[section]
+\newtheorem{remarque}{\textbf{Remarque}}[section]
+\newtheorem{exercise}{Exercice}[section]
+\newtheorem{prv}{\textbf{preuve}}[section]
+\newtheorem{nb}{\textbf{N.B}}[section]
+%%\newenvironment{prv}[1][Preuve]
+%%
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CHAPTER FRAME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%
+\makeatletter
+\newcommand{\thechapterwords}
+{ \ifcase \thechapter\or  Un \or Deux\or Trois\or Quatre\or Cinq\or
+  Six\or Sept\or Huit\or Neuf\or Dix\or Onze\fi}
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{15\p@}%
+  {\parindent \z@ \centering \reset@font
+        \hrule
+        \thickhrulefill\quad
+        \fcolorbox{black}{gray}{\color{white}\textbf{ \@chapapp{} \thechapterwords}}
+        \quad \thickhrulefill
+        \quad \hrule
+        \par\nobreak
+        \vspace*{15\p@}%
+        \Huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{15\p@}%
+        \hrule
+        \par
+        \vspace*{8\p@}%
+        \thickhrulefill\quad
+    \vskip 60\p@
+    %\vskip 100\p@
+  }}
+\def\@makeschapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{15\p@}%
+  {\parindent \z@ \centering \reset@font
+        \hrule
+        \par\nobreak
+        \vspace*{2\p@}%
+        \thickhrulefill
+        \par\nobreak
+        \vspace*{6\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{15\p@}%
+        \Large{$\clubsuit$}
+        \hspace{0.3cm}
+        \Huge \bfseries #1 \hspace{0.3cm}\Large{$\clubsuit$}\par\nobreak
+        \par
+        \vspace*{15\p@}%
+        \hrule
+        \par\nobreak
+        \vspace*{2\p@}%
+        \thickhrulefill
+    \vskip 60\p@
+    %\vskip 100\p@
+  }}
+  \def\@makechapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{15\p@}%
+  {\parindent \z@ \centering \reset@font
+        \hrule
+        \thickhrulefill\quad
+        $\star~~\star$\hspace{0.3cm}\fcolorbox{black}{gray}{\color{white}\textbf{ \@chapapp{}\thechapterwords}}
+        \hspace{0.3cm}$\star~~\star$
+        \quad \thickhrulefill
+        \quad \hrule
+        \par\nobreak
+        \vspace*{15\p@}%
+        \Huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{15\p@}%
+        \hrule
+        \par
+        \vspace*{2\p@}%
+        \thickhrulefill
+        \par
+        \vspace*{6\p@}%
+        \hrule
+    \vskip 60\p@
+    %\vskip 100\p@
+  }}
+%%
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*~~~~COMMANDES~~~~~*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%
+%
+\newcommand{\fonction}[5]{%
+\begin{array}{clcl}
+  #1 : & #2  & \longrightarrow & #3\\
+       & #4  & \longmapsto     & #5
+  \end{array}
+}
+\newcommand{\fonctionb}[5]{%
+\begin{array}[b]{clcl}
+  #1 : & #2  & \longrightarrow & #3\\
+       & #4  & \longmapsto     & #5
+  \end{array}
+}
+%
+\newcommand{\g}[1]{\textbf{#1}}
+\newcommand{\T}[1]{\text{#1}}
+\newcommand{\reel}{\mathbb{R}}
+\newcommand{\gm}[1]{\mathrm{#1}}
+\newcommand{\psum}[3]{\overset{#1}{\underset{#2}{#3}}}
+\newcommand{\fn}[1]{\footnotesize{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\Ro}{\mathcal{R}}
+%\newcommand{\cal}[1]{\mathcal{#1}} %existe dèjà
+%\newcommand{\frak}[1]{\mathfrak{#1}}%existe dèjà
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\croh}[1]{\left[#1\right]}
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\ens}[1]{\left\{#1\right\}}
+\newcommand{\da}{\rightarrow}
+\newcommand{\Da}{\Rightarrow}
+\newcommand{\lda}{\longrightarrow}
+\newcommand{\Lda}{\Longrightarrow}
+\newcommand{\ga}{\leftarrow}
+\newcommand{\Ga}{\Leftarrow}
+\newcommand{\lga}{\longleftarrow}
+\newcommand{\Lga}{\Longleftarrow}
+\newcommand{\gda}{\leftrightarrow}
+\newcommand{\Gda}{\Leftrightarrow}
+\newcommand{\lgda}{\longleftrightarrow}
+\newcommand{\Lgda}{\iff}
+\def\Oij{$\left(\text{O},~\vec{\imath},~\vec{\jmath}\right)\text{ }$}
+\def\Oijk{$\left(\text{O},~\vec{\imath},~ \vec{\jmath},~ \vec{k}\right)\text{ }$}
+\def\ijk{$\left(\vec{\imath},~ \vec{\jmath},~ \vec{k}\right)\text{ }$}
+\def\ij{$\left(\vec{\imath},~ \vec{\jmath}\right)\text{ }$}
+\def\Ouv{$\left(\text{O},~\vec{u},~\vec{v}\right)\text{ }$}
+\def\uv{$\left(\vec{u},~\vec{v}\right)\text{ }$}
+\newcommand{\Monge}{\begin{center}
+\begin{tikzpicture}[scale=1]%Mon ge
+\draw[ball color=green] (-.6,-.9)rectangle (1.9,.85); \draw[ultra
+thick,blue](.5,.5)..controls
+(.58,.56)and(.85,.56)..(.9,.5)--(.91,.4); \draw[ultra
+thick,red](.1,0)--(.1,.5)--(.3,.3)--(.5,.5)--(.5,0); \draw[ultra
+thick,blue] (.5,0) .. controls (.58,-.06)and
+(.85,-.06)..(.9,0)..controls (1,.03)..(1.1,0);\draw[ultra thick]
+(.87,.2) .. controls (.9,.1)..(.9,0)..
+controls(.87,-.15)..(.9,-.2)..controls (1,-.18)..(1.1,-.2);
+\draw[ultra thick](.68,.23).. controls
+(.8,.18)..(.9,.2)..controls(1,.23)..(1.1,.2); \draw[ultra
+thick](0,.1)..controls
+(-.2,-.33)and(-0.1,-.4)..(.1,-.4)..controls(1,-.3)..(1.6,-.46);
+\draw[ultra
+thick](0,.1)..controls(-.24,-.3)and(-.4,-.65)..(0,-.56)..controls(.9,-.4)..(1.6,-.46);
+\end{tikzpicture}
+\end{center}}
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~*~~deux environnement pour la preuve (proof et preuve)~~*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+\addto\captionsfrench{%
+\renewcommand{\proofname}{\bfseries \underline{Preuve}}
+}
+\renewcommand{\qedsymbol}{\rule{0.6em}{0.6em}}
+%
+\newenvironment{preuve}[1][\underline{Preuve}]
+{\noindent\textbf{#1.} }{\ \rule{0.6em}{0.6em}}
+%
+%
+\thispagestyle{empty}%----------------------------------------->% pour obtenir une premiere page sans entête ni pied de page
+%
+
+%
+
+\title{\textcolor[rgb]{1.00,1.00,1.00}{......}Paris School of Business (PSB)
+\textcolor[rgb]{1.00,1.00,1.00}{
+.................................................................
+...............................................................................}
+\textbf{  Compréhension et utilisation de 5 packages de R: evir, evd, R.miner, graphics, regtest}\\\textcolor[rgb]{1.00,1.00,1.00}{.}}
+\author{MSc Data Management\\ 
+            Projet : \underline{\textbf{R}}\\
+         par :\\
+       Aufrere THUY, Nina ZOUMANIGUI, Arnaud Bruel YANKO\\\\
+         %Nina ZOUMANIGUI\\
+         %Arnaud Bruel YANKO \\\\
+           Sous la  direction de : \\
+                 \textbf{M. Henri Laude}\\
+                    \emph{Enseignant}\\
+                    
+                    }
+                
+\date{\emph{Année académique 2020-2022}}
+%%
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*~ début du document ~*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%{\color{blue} \dingline{45}}
+
+
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+%\usepackage[pdftex=true,hyperindex=true,colorlinks=true]{hyperref}
+
+
+
+
+
+
+
+\begin{document}
+\maketitle%%
+
+\newpage
+\pagenumbering{roman}%-------------------->% numéroter les page en chiffre romain
+\dominitoc
+
+
+
+
+
+
+
+
+
+
+
+
+
+\tableofcontents
+\newpage\pagenumbering{arabic}%-------------------->% numéroter les page en chiffre
+
+
+
+
+
+
+\section{Introduction}
+\vspace{-0.5 cm}%------------------------------------->% faisons un petit espace après le sommmaire
+Dans une session $R$, nous avons accès à un bon nombre de fonctions et de jeux de données. Les objets
+accessibles sont ceux contenus dans les packages $R$ chargés à l'ouverture de la session.
+Un package $R$ est simplement un regroupement de fonctions et de données documentées.
+Ce tutoriel à pour but de vous faire une presentation de certains packages qui ont été choisis à savoir evir, evd, R.miner, graphics, regtest, packages qui nous permettrons:
+\begin{itemize}
+	\item D'explorer le monde de la théorie des valeurs extrêmes (\href{http://irs.math.cnrs.fr/2017/pdf/majumdar.pdf}{Cours intéressant sur la Statisque des valeurs extrêmes})   en modélisant les risques extrêmes;
+	\item Travailler d'une manière générale sur la Régression.
+\end{itemize}
+\newpage
+
+
+
+
+\section{Installation et chargement d'un package R}
+Il est simple de charger en $R$ des packages supplémentaires à ceux chargés par défaut. Il suffit d'utiliser la
+fonction library comme dans cet exemple :\\
+\textit{library(evir)}\\
+Cette commande fonctionne uniquement si le package a été préalablement installé sur notre ordinateur. L'installation d'un package et le chargement d'un package sont deux étapes distinctes.\\
+Certains packages $R$ sont installés automatiquement lors de l'installation de $R$.
+
+%Ils ne sont pas pour autant tous chargés lors d'une ouverture de session.
+ 
+La fonction \emph{installed.packages} retourne des informations à propos des packages $R$ installés sur l'ordinateur
+local. \\
+regardons ensemble un exemple obtenu sur mon ordinateur.
+
+	\begin{center}
+	\includegraphics[scale=0.7]{1.PNG} 
+	%\captionof{figure}{}
+	\label{fig3}
+\end{center}
+
+\section{ Accéder au contenu d'un package $R$ chargé}
+Une fois un package chargé en R avec la commande library, son contenu est accessible dans la session $R$.
+Nous avons vu dans des notes précédentes comment fonctionne l'évaluation d'expressions en R. Nous savons donc que le chargement d'un nouveau package ajoute un environnement dans le chemin de recherche de $R$, juste en dessous de l'environnement de travail.
+Le chargement de certains packages provoque aussi le chargement de packages dont ils dépendent.\\ Ainsi,
+parfois plus d'un environnement est ajouté au chemin de recherche de $R$ lors du chargement d'un package.
+L'environnement d'un package contient les fonctions publiques et les données du package.
+
+
+\subsection{Jeux de données}
+Souvent, les jeux de données inclus dans un package se retrouvent directement dans l'environnement d'un
+package dans le chemin de recherche. C'est le cas, par exemple, des jeux de données du package datasets.\\
+\textit{head(ls("package:datasets"), n = 8)}
+	\begin{center}
+	\includegraphics[scale=0.6]{2.PNG} 
+	%\captionof{figure}{}
+	\label{fig3}
+\end{center}
+Dans notre cas espèce seulement les 8 premiers éléments de la liste sont affichés ici, car cette liste compte normalement 104 éléments.\\
+Cependant, les jeux de données sont parfois cachés. Ils sont alors traités différemment des fonctions privées et ne se retrouvent même pas dans l'espace de noms du package. \\
+La fonction data est très utile dans ce cas. Cette fonction a en fait plusieurs utilités.\\
+Premièrement, elle permet d'énumérer tous les jeux de données contenus dans un package.
+\textit{data(package = "evir")}\\
+Dans notre cas espèce, nous allons à partir du packages "evir", afficher le jeux de données $nidd.annual$, ces données représentent les niveaux maximaux annuels de la \emph{rivière Nidd} dans le Yorkshire..\\
+On a:
+	\begin{center}
+	\includegraphics[scale=0.9]{3.PNG} 
+	%\captionof{figure}{}
+	\label{fig3}
+\end{center}
+Et on a la sortie suivante:
+	\begin{center}
+	\includegraphics[scale=0.7]{4.PNG} 
+	%\captionof{figure}{}
+	\label{fig3}
+\end{center}
+$(-)$ Format\\
+Nous obtenons en sortir un vecteur numérique contenant 35 observations.
+
+\section{Applications}
+Pour application on utilise les données des crues annuelles de la rivière $Nidd$, dans le Yorkshire.
+
+\subsection{Contexte}
+La hauteur d'une rivière est modélisée par une variable aléatoire $X$.\\
+On dispose de $\{ X_{1}, \cdots, X_{n} \}$ un échantillon de hauteurs d'eau annuelles. On note $X_{1,n} \leq X_{2,n} \leq, \cdots, \leq X_{n,n}$ l'échantillon ordonné, avec $n \in \mathbb{N}$.\\
+
+\textbf{Deux problèmes complémentaires :}
+\begin{description}
+		\item[$*$] Calculer la probabilité $p$ d'une hauteur d'eau $h$ extrême\\
+		$p=\mathbf{P}(X \ge h)$ avec $h > X_{n,n}$.
+		\item[$*$] Calculer le niveau d'eau $h$ qui est atteint ou dépassé une seule fois sur $T > n$, i.e. résoudre\\
+		$1/T= \mathbf{P}(X \ge h)$
+\end{description}
+
+\textbf{Modélisation:} Le but ici étant d'écrire un programme permettant de calculer la fonction empirique des excès moyens et de tracer les différents seuils:\\\\
+Allons y:
+\begin{description}
+	\item[$(-)$] On Charge au préalable nos deux packages, les bouts de code suivant permettent de faire ce travail:
+	\begin{center}
+		\includegraphics[scale=0.7]{5.PNG} 
+		%\captionof{figure}{}
+		\label{fig3}
+	\end{center}
+	\item[$(-)$]  Nous allons commencer par lire les données du fichier $Nidd$ et les classé par ordre décroissant dans un vecteur noté $nidd$. On creé un vecteur $seuil$ ordonnés par ordre.
+	\begin{center}
+		\includegraphics[scale=0.7]{6.PNG} 
+		%\captionof{figure}{}
+		\label{fig3}
+	\end{center}
+	\item[$(-)$] Afin de calculer la moyenne des excès pour chaque seuil, on crée une matrice dont le nombre de lignes correspond à la taille du vecteur $"seuil"$ et le nombre de colonnes correspond à la	 taille du vecteur $"nidd"$ telle que chaque ligne i correspond aux excès au delà de $seuil[i]$.\\
+	Puisque certains excès peuvent être négatifs, nous mettons les zéros à la place des termes	négatifs :
+	\begin{center}
+		\includegraphics[scale=0.7]{7.PNG} 
+		%\captionof{figure}{}
+		\label{fig3}
+	\end{center}
+
+	\item[$(-)$] On calcule pour chaque seuil la moyenne des excès:
+	\begin{center}
+		\includegraphics[scale=0.7]{8.PNG} 
+		%\captionof{figure}{}
+		\label{fig3}
+	\end{center}
+	
+	\item[$(-)$] La fonction moyenne des excès est une méthode permettant de répondre à l?une des dificultés de la modélisation des sinistres extrêmes qui est la détermination du seuil. Ainsi, graphiquement il est possible de déterminer le seuil le plus adéquat, en prenant la valeur à partir de laquelle la fonction moyenne des excès est linéaire.\\
+	Regardons ensemble ce que cela produit:
+	\begin{center}
+		\includegraphics[scale=0.7]{9.PNG} 
+		%\captionof{figure}{}
+		\label{fig3}
+	\end{center}
+	\begin{center}
+		\includegraphics[scale=0.6]{11.PNG} 
+		%\captionof{figure}{}
+		\label{fig3}
+	\end{center}
+\end{description}	
+
+Pour aller plus loin l'idéal serait d'appliquer cela aux différentes lois usuelles: La loi Pareto, Weibull, Frechet, Gamma, Cauchy, Normal et bien d'autres: 
+(\href{https://cermics.enpc.fr/~delmas/Enseig/mrf-quantile.pdf}{Les differents lois en Statisque des valeurs extrêmes})
+	
+
+
+\begin{thebibliography}{99}\addstarredchapter{Bibliographie}
+
+\bibitem{1} Site le CRAN \emph{https://cran.r-project.org/web/packages/available packages by name.html available-packages-E}  
+\bibitem{2}  \emph{https://cran.r-project.org/web/packages/}			
+\bibitem{3} Sidney I. Resnick \emph{Extreme Values, Regular Variation and Point Processes}
+\bibitem{4} Stuart Coles \emph{An Introduction to Statistical Modeling of Extreme Values}
+\bibitem{5} Laurens de Haan \emph{Extreme value theory}
+	
+\end{thebibliography}
+\end{document}
