@@ -1,0 +1,147 @@
+---
+title: "Package Graphics"
+author: "Thuy AUFRERE, Nina ZOUMANIGUI, Arnaud Bruel YANKO"
+date: "12/12/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### 4. Package graphics R
+
+**4.1. Introduction**
+
+Le logiciel $R$ est l’un des logicielsincontestablement reconnu pour ses graphiques tels que Les bandes linéaires les bandes en pointillé ou même les bandes de nuages, ...
+
+![Quelques exemples de graphiques](C:\Users\yanko\Documents\MON PROJET\ChainLadder\1.jpeg)
+
+
+$R$ a intégré des bibliothèques qui offrent un excellent support graphique. L'installation R contient trois packages importants : 
+
+1. les graphiques
+
+2. les treillis
+
+3. la grille
+
+
+Ces packages fournissent des outils pour dessiner une grande variété de tracés et de formes. De plus, de nombreux packages externes tels que `ggplot2` peuvent être téléchargés dans $R$.
+
+**QU'EST-CE QUE LE BUT D'UN GRAPHIQUE**
+
+* Mieux comprendre le problème 
+* Mieux expliquer un phénomène 
+* Le but est de nous nous aider à rendre une situation abstraite en        information convaincante.
+
+Pour faire ces graphiques , le logiciels  "$R$" a mis à disposition un package à cet
+effet qui , de par ces multiples commandes met en exécution une fonction de tracé.
+
+Nous allons donner une brève description de ces trois packages en mettant un accent particulier sur la commande  "$PLOT$ " ci-dessous.
+
+\newpage
+
+**4.2. Description et installation d'un package graphics $R$**
+
+La bibliothèque graphique est le package graphique de base standard fourni avec
+l'installation $R$. Cette bibliothèque a été développée à l'origine pour $R$. De nombreux
+tracés standards tels que des tracés de base de points et de lignes, des
+histogrammes, des graphiques à barres, des camemberts, des bplots, etc. peuvent être dessinés avec cette bibliothèque.
+
+À toutes fins pratiques, la bibliothèque graphique est suffisamment silencieuse pour créer des
+tracés et des graphiques d'excellente qualité que nous utilisons généralement pour l'analyse des données et des statistiques.
+
+
+Ce package est fourni avec l'installation de $R$.
+
+**Le paquet de grille**
+
+
+Le système graphique de grille a ensuite été développé par Paul Murrel et ajouté à $R$. Il s'agit d'un système graphique de bas niveau qui permet de dessiner et d'organiser des formes géométriques de base telles que des polygones, des courbes, des images raster, etc. Le paquet de grille contient des fonctions pour accéder au canevas et permet la création de plusieurs régions appelées fenêtres sur une seule toile.
+
+Ce package est fourni avec l'installation $R$. Nous devons charger la bibliothèque de grille dans $R$ avant de l'utiliser. (Le package graphique se charge automatiquement lorsque nous démarrons $R$).
+
+Pour charger la bibliothèque de grille dans $R$, tapez
+`grille`
+
+**Le paquet lattice**
+
+
+Le treillis , développé par Deepayan Sarkar, est un système de visualisation de haut niveau basé sur une méthode appelée graphique en treillis . Ce package gère très efficacement les données multivariées.
+
+Le package lattice se compose de fonctions de haut niveau pour chaque tâche. Ces fonctions renvoient des objets qui peuvent être convertis en graphiques par les fonctions `plot()` du package $R$ de base. Ce package est basé sur le moteur graphique de grille mentionné ci-dessus.
+
+Ce package est également fourni avec l'installation de $R$ et nécessite le chargement du package `grDevices`.
+
+Pour charger la bibliothèque grDevices dans $R$, tapez
+
+`grDevices`
+
+**Le paquet ggplot2**
+
+
+`ggplot2` est une bibliothèque graphique pour $R$, créée par Hadley Wiskham. Il est mentionné dans sa page d'accueil que `ggplot2` est un système de traçage pour $R$, basé sur la grammaire des graphiques, qui essaie de prendre les bonnes parties des graphiques de base et de treillis et aucune des mauvaises parties". (Le Grammer of Graphics mentionné ici est un livre classique sur les méthodes graphiques pour la
+
+visualisation de données scientifiques écrit par Leyland Wilkinson).
+Nous pouvons créer des parcelles très élégantes avec cette bibliothèque.
+
+`ggplot2` est un package externe qui doit être téléchargé de l'intérieur $R$. Pour installer ce package en ligne à partir de l'invite $R$, tapez
+
+`ggplot2`
+
+
+**4.3. Applications**
+
+$R$ avec `plot()`, `points()`, `lines()`, `polygon`
+
+La fonction `plot()` **black**  trace les points et les lignes.
+
+Les tracés de points et de lignes peuvent être produits en
+utilisant la fonction `terrain()`, qui prend les points $x$ et $y$ sous forme de vecteurs ou de nombre unique avec de nombreux autres paramètres. Les paramètres $x$ et $y$ sont
+nécessaires. Pour d'autres, la valeur par défaut sera utilisée en l'absence de la
+valeur.
+Dans les lignes de commande ci-dessous, nous créons d'abord une paire de
+séquences $x$ et $y$ et les passons en paramètres à la fonction `terrain()`.
+
+**Commande d'exécution de plot avec un graphique en nuage de point**
+
+```{r}
+#Comment représenter graphiquement la commande plot avec des nuages de #points 
+x1<-rnorm(200,mean = 0, sd=1)
+y1<-rnorm(200,0,1) 
+plot(x1,y1,pch=16,col="purple")
+
+
+```
+
+**Commande d'exécution de plot avec un graphique en ligne**
+
+```{r }
+x2<-seq(0,3*pi,len=100)
+y2<-sin(x2)
+plot(x2,y2,type ="l")
+plot(x2,y2,type ="l",lwd=3,col="darkgreen")
+```
+
+**Comment représenter graphiquement la commande plot avec des nuages de points**
+
+```{r}
+
+x2<-seq(0,3*pi,len=100)
+y2<-sin(x2)
+
+plot(x2,y2,type ="l")
+
+plot(x2,y2,type ="l",lwd=3,col="darkgreen")
+
+
+y2.rand<-y2+rnorm(100,0,0.1)
+
+points(x2,y2.rand,pch=16,col="red")
+
+```
+
+
