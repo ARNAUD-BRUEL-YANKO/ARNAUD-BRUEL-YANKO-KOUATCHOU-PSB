@@ -1,3 +1,10 @@
 # PSBX
-(1) Compréhension et utilisation de 5 packages de R: evir, evd, R.miner, graphics, regtest
-(2) Series temporelles et modèle ARIMA
+(1) Series temporelles et modèle ARIMA
+  - Modélisation
+  - Implémentation sur R
+(2) Packages R: tutoriat sur les packages
+	- evd
+	- evir
+	- rminer
+	- graphics
+
