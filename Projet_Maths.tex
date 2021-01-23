@@ -1,0 +1,988 @@
+%==================================================================================================================%
+%
+%=======================================-Lundi le 09/11/2020 06:36-======================================%
+%
+%%%%**************************************~~Arnaud Bruel YANKO KOUATCHOU~~***************************************%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%    %%%%%%    %%%%%%%%     %%%%%%%%    %%  %%%%%%        %%%%%%%%       %%%%%%%%%%%%%%%%%%%%%%%%
+%%%********%%%%%%%%%  %  %%%%  %  %%%%%%%   %   %%%%%%%  %  %  %%%%%%  %%%%%%%%%%%%%%  %%%%%%%%%%%%%********%%%%%%%%
+%%%********%%%%%%%%%  %%  %%  %%  %%%%%%%  %%%  %%%%%%%  %%    %%%%%%  %%    %%%%%%%%      %%%%%%%%%********%%%%%%%%
+%%%********%%%%%%%%%  %%%    %%%  %%%%%%%   %   %%%%%%%  %%%   %%%%%%  %%%%  %%%%%%%%  %%%%%%%%%%%%%********%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%  %%%%  %%%%  %%%%%%%%     %%%%%%%%  %%%%  %%%%%%        %%%%%%%%       %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -----------------------------------------------------------------------------------------------------------------%
+% ***************************-HELLO PSB 2020-2022-***************
+%                                                 PRÉAMBULE
+% =================================================================================================================
+% =========     ====     =====       =======  =======    =======    ===     ====  ===  ===  ========      =========
+% =========  ==  ===  ==  ====  ===========    ======  =  =====  =  ===  ==  ===  ===  ===  ========  =============
+% =========     ====     =====      ======  ==  =====  ==  ===  ==  ===     ====  ===  ===  ========     ==========
+% =========  =======  ==  ====  =========        ====  ====   ====  ===  ==  ===  ==   ===  ========  =============
+% =========  =======  ===  ===       ===   ====   ===  ===========  ===     ====    =  ===       ===       ========
+% =================================================================================================================
+\documentclass[12pt,a4paper]{report}
+\usepackage{listings}
+
+\usepackage[T1]{fontenc}%------------------------------------->% permet d'écrire  directement avec les absents
+\usepackage[frenchb]{babel}%---------------------------------->% code les règle typogragiques françaises
+%%\usepackage{hyperref}
+
+\usepackage[latin1]{inputenc}%-------------------------------->% codage du fichier source
+\usepackage{latexsym}%---------------------------------------->% des symboles courants
+\usepackage{pdfpages}%---------------------------------------->% permet d’ inclure des fichiers entiers pdf
+\usepackage{xspace}%------------------------------------------>% pour ne pas taper les accolades à la fin de certaines commandes si l’onveut un espace derrière ex 1\ier exercice au lieu d e 1\ier{}
+\usepackage{amscd}%------------------------------------------->% permet la construction de diagrammes commutatifs voir latex-bemaer-p74
+\usepackage{amsthm, amssymb,amsmath,eufrak,amsfonts}%--------->% permet de produire des formules et symboles mathematiques compliquées
+\usepackage{graphicx}%---------------------------------------->% importer des figure dans le document
+\usepackage{dsfont}%------------------------------------------>% permet d'utiliser mathds
+\usepackage{Lettrine}%---------------------------------------->% permmet deproduire lettrine \lettrine{Elle} ou \lettrine{E}lle
+\usepackage[french2]{minitoc}%-------------------------------->% permet d'avoir des mini-tables de matière en français "sommaire"
+\usepackage{xcolor,rotating,epic,eepic}%---------------------->% couleurs, rotation d'un texte
+\usepackage{pgf, tikz}%--------------------------------------->% permet de déssiner directement dans le fichié source
+\usetikzlibrary{calc,through,backgrounds}
+\usepgflibrary{decorations.footprints}
+\usetikzlibrary{decorations.footprints}
+\usepackage{fancybox}%---------------------------------------->% fancybox permet de produire cadre ombre noire
+\usepackage{enumerate}%--------------------------------------->% un joli package qui améliore l'environnement enumerate du au celèbre "David Car-lisle"
+\usepackage{expdlist}%---------------------------------------->% permet d'insérer un paragraphe dans une liste sans en boulverser la numérotation
+\usepackage{array}%------------------------------------------->% pour produire des paragraphe centré dans un tableau
+\usepackage{delarray}%---------------------------------------->% package qui améliore l'environnement array (facilite les choses)
+\usepackage{tabularx}%---------------------------------------->% pour tableau X
+\usepackage{wrapfig}%----------------------------------------->% Pour mettre du texte autour d’une figure
+\usepackage{pbsi,bbold,aurical,calligra}%--------------------->% fonte
+\usepackage{bbding}
+\usepackage{mathrsfs}%---------------------------------------->% pour \mathscr
+\usepackage{times}%%
+\usepackage{hyperref}
+%\usepackage[colorlinks=true,breaklinks=true,linkcolor=blue]{hyperref}
+\hypersetup{
+	pdfauthor   = {Moi},
+	pdftitle    = {C V},
+	colorlinks=true,
+	breaklinks=true,
+	urlcolor= blue,
+	linkcolor= blue,
+	pdfcreator  = {\LaTeX},
+	pdfproducer = {Kile}
+}
+
+%%
+%%=================================================================================================================
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~GÉOMÉTRIE DE LA FUEILLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%%=================================================================================================================
+%%
+%%
+\pagestyle{headings}
+\usepackage{geometry}%|--------------------------------------->% difini les differentes dimention de chaque page
+\geometry{%
+left=2.5cm,right =2.5cm,  %|---------------------------------->% fixe les marges à gauche et à droite
+top =2.5cm,bottom=2.5cm,   %|--------------------------------->% fixe les marges en haut et en bas
+marginparwidth=1.2cm, marginparsep=3mm %---------------------->% indique la largeur des notes marginales
+ }
+\linespread{1.5}%--------------------------------------------->% l'interligne
+%%
+%%
+%==================================================================================================================
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ENTÊTE ET PIED DE PAGE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%==================================================================================================================
+%%
+%%
+\usepackage{fancyhdr}%---------------------------------------->% pour l'entête et pied de page
+\pagestyle{fancy} %%% Left Even, Right Odd
+%=================================================  EN-TÊTE : =====================================================
+%%
+\fancyhf{}%--------------------------------------------------->% supprime les en-têtes et pieds predefines
+%\fancyhead[L]{\nouppercase{\bfseries\leftmark}}%-------------->% [Left]=[gauche] écrire en minuscule et en gras le nom du chapitre courant
+\fancyhead[L]{\nouppercase{\bfseries\rightmark}}%------------->% [Right]=[droite] écrire en minuscule et en gras la section courante
+\renewcommand{\headrulewidth}{2pt}%--------------------------->% un trait en haut de page d'épaiceur 2 points
+%%
+%================================================  PIED DE PAGE : =================================================
+%%
+\fancyfoot[L]{%
+\footnotesize{\textbf{     Projet R           }}}%-------------->% pied de page à gauche
+\fancyfoot[R]{%
+\footnotesize{{\bsc{  PSB 2020-2022}}}}%------->% idem
+\fancyfoot[c]{%
+\fcolorbox{black}{gray}{\color{white}\textbf{\thepage}}}
+\renewcommand{\footrulewidth}{1pt}%--------------------------->% épaisseur des traits
+%%
+\fancypagestyle{plain}{ %------------------------------------->% pages de tetes de chapitre
+\fancyhead{}            %------------------------------------->% supprime l'entete
+\fancyfoot{}            %------------------------------------->% supprime le pied de page
+\fancyfoot[L]{%
+\footnotesize{\textbf{       Projet R         }}}%-------------->% pied de page à gauche
+\fancyfoot[R]{%
+\footnotesize{{\bsc{ PSB 2020-2022}}}}%------->% idem
+\fancyfoot[c]{%
+\fcolorbox{black}{gray}{\color{white}\textbf{\emph{\thepage}}}}
+\renewcommand{\headrulewidth}{0pt} % et le filet
+\renewcommand{\footrulewidth}{1pt}
+}
+\fancypagestyle{myheadings}{\fancyhf{}%
+\fancyhead[L]{\bfseries Introduction}%
+\fancyfoot[L]{%
+\footnotesize{\textbf{      Projet R      }}}%-------------->% pied de page à gauche
+\fancyfoot[R]{%
+\footnotesize{{\bsc{ PSB 2020-2022}}}}%------->% idem
+\fancyfoot[c]{%
+\fcolorbox{black}{gray}{\color{white}\textbf{\thepage}}}
+\renewcommand{\headrulewidth}{1.pt}%
+\renewcommand{\footrulewidth}{1pt}}
+\renewcommand{\thesection}{\arabic{section}}
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~NEWTHEOREME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%
+\newtheorem{propriete}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Propriété}}}[section]
+\newtheorem{definition}{\textbf{Définition}}[section]
+\newtheorem{lem}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Lemme}}}[section]
+\newtheorem{pro}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Proposition}}}[section]
+\newtheorem{cor}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Corollaire}}}[section]
+\newtheorem{consequence}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Conséquence}}}[section]
+\newtheorem{theoreme}{\fcolorbox{gray!50}{gray!50}{\color{black}\textbf{Théorème}}}[section]
+\newtheorem{thmetdefn}{Théorème et Définition}[section]
+\newtheorem{rappel}{Rappels}[section]
+\theoremstyle{definition}%------------------------------------>% permet de ne pas écrire le contenu de ce qui suit en italique
+\newtheorem{ex}{\textbf{Exemple}}[section]
+\newtheorem{notation}{\textbf{Notation}}[section]
+\newtheorem{remarque}{\textbf{Remarque}}[section]
+\newtheorem{exercise}{Exercice}[section]
+\newtheorem{prv}{\textbf{preuve}}[section]
+\newtheorem{nb}{\textbf{N.B}}[section]
+%%\newenvironment{prv}[1][Preuve]
+%%
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CHAPTER FRAME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%
+\makeatletter
+\newcommand{\thechapterwords}
+{ \ifcase \thechapter\or  Un \or Deux\or Trois\or Quatre\or Cinq\or
+  Six\or Sept\or Huit\or Neuf\or Dix\or Onze\fi}
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{15\p@}%
+  {\parindent \z@ \centering \reset@font
+        \hrule
+        \thickhrulefill\quad
+        \fcolorbox{black}{gray}{\color{white}\textbf{ \@chapapp{} \thechapterwords}}
+        \quad \thickhrulefill
+        \quad \hrule
+        \par\nobreak
+        \vspace*{15\p@}%
+        \Huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{15\p@}%
+        \hrule
+        \par
+        \vspace*{8\p@}%
+        \thickhrulefill\quad
+    \vskip 60\p@
+    %\vskip 100\p@
+  }}
+\def\@makeschapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{15\p@}%
+  {\parindent \z@ \centering \reset@font
+        \hrule
+        \par\nobreak
+        \vspace*{2\p@}%
+        \thickhrulefill
+        \par\nobreak
+        \vspace*{6\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{15\p@}%
+        \Large{$\clubsuit$}
+        \hspace{0.3cm}
+        \Huge \bfseries #1 \hspace{0.3cm}\Large{$\clubsuit$}\par\nobreak
+        \par
+        \vspace*{15\p@}%
+        \hrule
+        \par\nobreak
+        \vspace*{2\p@}%
+        \thickhrulefill
+    \vskip 60\p@
+    %\vskip 100\p@
+  }}
+  \def\@makechapterhead#1{%
+  %\vspace*{50\p@}%
+  \vspace*{15\p@}%
+  {\parindent \z@ \centering \reset@font
+        \hrule
+        \thickhrulefill\quad
+        $\star~~\star$\hspace{0.3cm}\fcolorbox{black}{gray}{\color{white}\textbf{ \@chapapp{}\thechapterwords}}
+        \hspace{0.3cm}$\star~~\star$
+        \quad \thickhrulefill
+        \quad \hrule
+        \par\nobreak
+        \vspace*{15\p@}%
+        \Huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{15\p@}%
+        \hrule
+        \par
+        \vspace*{2\p@}%
+        \thickhrulefill
+        \par
+        \vspace*{6\p@}%
+        \hrule
+    \vskip 60\p@
+    %\vskip 100\p@
+  }}
+%%
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*~~~~COMMANDES~~~~~*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%
+%
+\newcommand{\fonction}[5]{%
+\begin{array}{clcl}
+  #1 : & #2  & \longrightarrow & #3\\
+       & #4  & \longmapsto     & #5
+  \end{array}
+}
+\newcommand{\fonctionb}[5]{%
+\begin{array}[b]{clcl}
+  #1 : & #2  & \longrightarrow & #3\\
+       & #4  & \longmapsto     & #5
+  \end{array}
+}
+%
+\newcommand{\g}[1]{\textbf{#1}}
+\newcommand{\T}[1]{\text{#1}}
+\newcommand{\reel}{\mathbb{R}}
+\newcommand{\gm}[1]{\mathrm{#1}}
+\newcommand{\psum}[3]{\overset{#1}{\underset{#2}{#3}}}
+\newcommand{\fn}[1]{\footnotesize{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\Ro}{\mathcal{R}}
+%\newcommand{\cal}[1]{\mathcal{#1}} %existe dèjà
+%\newcommand{\frak}[1]{\mathfrak{#1}}%existe dèjà
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\croh}[1]{\left[#1\right]}
+\newcommand{\pa}[1]{\left(#1\right)}
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+\newcommand{\ens}[1]{\left\{#1\right\}}
+\newcommand{\da}{\rightarrow}
+\newcommand{\Da}{\Rightarrow}
+\newcommand{\lda}{\longrightarrow}
+\newcommand{\Lda}{\Longrightarrow}
+\newcommand{\ga}{\leftarrow}
+\newcommand{\Ga}{\Leftarrow}
+\newcommand{\lga}{\longleftarrow}
+\newcommand{\Lga}{\Longleftarrow}
+\newcommand{\gda}{\leftrightarrow}
+\newcommand{\Gda}{\Leftrightarrow}
+\newcommand{\lgda}{\longleftrightarrow}
+\newcommand{\Lgda}{\iff}
+\def\Oij{$\left(\text{O},~\vec{\imath},~\vec{\jmath}\right)\text{ }$}
+\def\Oijk{$\left(\text{O},~\vec{\imath},~ \vec{\jmath},~ \vec{k}\right)\text{ }$}
+\def\ijk{$\left(\vec{\imath},~ \vec{\jmath},~ \vec{k}\right)\text{ }$}
+\def\ij{$\left(\vec{\imath},~ \vec{\jmath}\right)\text{ }$}
+\def\Ouv{$\left(\text{O},~\vec{u},~\vec{v}\right)\text{ }$}
+\def\uv{$\left(\vec{u},~\vec{v}\right)\text{ }$}
+\newcommand{\Monge}{\begin{center}
+\begin{tikzpicture}[scale=1]%Mon ge
+\draw[ball color=green] (-.6,-.9)rectangle (1.9,.85); \draw[ultra
+thick,blue](.5,.5)..controls
+(.58,.56)and(.85,.56)..(.9,.5)--(.91,.4); \draw[ultra
+thick,red](.1,0)--(.1,.5)--(.3,.3)--(.5,.5)--(.5,0); \draw[ultra
+thick,blue] (.5,0) .. controls (.58,-.06)and
+(.85,-.06)..(.9,0)..controls (1,.03)..(1.1,0);\draw[ultra thick]
+(.87,.2) .. controls (.9,.1)..(.9,0)..
+controls(.87,-.15)..(.9,-.2)..controls (1,-.18)..(1.1,-.2);
+\draw[ultra thick](.68,.23).. controls
+(.8,.18)..(.9,.2)..controls(1,.23)..(1.1,.2); \draw[ultra
+thick](0,.1)..controls
+(-.2,-.33)and(-0.1,-.4)..(.1,-.4)..controls(1,-.3)..(1.6,-.46);
+\draw[ultra
+thick](0,.1)..controls(-.24,-.3)and(-.4,-.65)..(0,-.56)..controls(.9,-.4)..(1.6,-.46);
+\end{tikzpicture}
+\end{center}}
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~*~~deux environnement pour la preuve (proof et preuve)~~*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+\addto\captionsfrench{%
+\renewcommand{\proofname}{\bfseries \underline{Preuve}}
+}
+\renewcommand{\qedsymbol}{\rule{0.6em}{0.6em}}
+%
+\newenvironment{preuve}[1][\underline{Preuve}]
+{\noindent\textbf{#1.} }{\ \rule{0.6em}{0.6em}}
+%
+%
+\thispagestyle{empty}%----------------------------------------->% pour obtenir une premiere page sans entête ni pied de page
+%
+
+%
+
+\title{\textcolor[rgb]{1.00,1.00,1.00}{......}Paris School of Business (PSB)
+\textcolor[rgb]{1.00,1.00,1.00}{
+.................................................................
+...............................................................................}
+\textbf{ Interpolation des données spatiales}\\\textcolor[rgb]{1.00,1.00,1.00}{.}}
+\author{MSc Data Management\\ 
+            Projet : \underline{\textbf{R}}\\
+         par :\\
+       Arnaud Bruel YANKO, Adrien JUPYTER\\\\
+         %Nina ZOUMANIGUI\\
+         %Arnaud Bruel YANKO \\\\
+           Sous la  direction de : \\
+                 \textbf{M. Henri LAUDE}\\
+                    \emph{Enseignant}\\
+                    
+                    }
+                
+\date{\emph{Année académique 2020-2022}}
+%%
+%%
+%==================================================================================================================%
+%%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*~ début du document ~*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~%
+%==================================================================================================================%
+%%
+%%{\color{blue} \dingline{45}}
+
+
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+%\usepackage[pdftex=true,hyperindex=true,colorlinks=true]{hyperref}
+
+
+
+
+
+
+
+\begin{document}
+\maketitle%%
+
+\newpage
+\pagenumbering{roman}%-------------------->% numéroter les page en chiffre romain
+\dominitoc
+
+
+
+
+
+
+
+
+
+
+
+
+
+\tableofcontents
+\newpage\pagenumbering{arabic}%-------------------->% numéroter les page en chiffre
+
+
+
+
+
+
+\section{Introduction}
+\vspace{0. cm}%------------------------------------->% faisons un petit espace après le sommmaire
+Les techniques d'interpolation spatiale peuvent être séparées en deux principales catégories : les approches déterministes et géostatistiques. Pour faire simple, les méthodes déterministes n'essayent pas de capturer la structure spatiale des données. Elles utilisent seulement des équations mathématiques prédéfinies pour prédire des valeurs à des positions où aucun échantillon n'est disponible (en pondérant les valeurs attributaires des échantillons dont la position dans la parcelle est connue). Au contraire, les méthodes géostatistiques cherchent à ajuster un modèle spatial aux données. Cela permet de générer une valeur prédite à des positions non échantillonnées dans la parcelle (comme les méthodes déterministes) et de fournir aux utilisateurs une estimation de la précision de cette prédiction.\\
+Les approches géostatistiques regroupent le krigeage et ses dérivés. Toutes les méthodes qui seront discutées doivent être appliquées sur des variables continues (NDVI, rendement, teneur en carbone du sol) et pas factoriel (ex : une classe issue d'une méthode de classification) ou binaires (variables avec des valeurs de 0 ou 1 ? il existe des méthodes pour ce type de données, notamment des méthodes de krigeage 
+\newpage
+
+\chapter{Les méthodes d'estimation déterministes et non stochastiques }
+
+\section{Estimation globale}
+
+La moyenne arithmétique d'un ensemble de valeurs situées dans un espace géographique est
+souvent un estimateur peu représentatif de la moyenne globale de la zone. En effet, si, par
+exemple, l'échantillonnage privilégie certains secteurs où les valeurs sont très faibles, elles ne
+seront pas représentatives de l'ensemble de la zone ainsi que leur valeur moyenne. Pour obtenir
+une estimation représentative de la moyenne globale il est indispensable de pondérer la valeur
+des observations de telle manière que celles qui sont proches les unes des autres aient moins
+d'influence dans l'estimation. Cette méthode qui donne un poids faible aux observations
+rassemblées en "grappes" a cependant deux inconvénients:
+\begin{itemize}
+	\item elle peut donner un poids nul à de l'information très importante car l'information utile est
+	complètement inconnue a priori ;
+	\item il est souvent impossible d'identifier les observations importantes et celles qui le sont
+	moins.
+\end{itemize}
+
+On distingue un nombre important de techniques que nous détaillerons dans la suite.
+
+\newpage
+\subsection{La méthode des polygones d'influence de Thiessen} 
+
+On définit pour chaque site d'observations; un polygone d'influence qui est déterminé de
+telle sorte que chaque point du polygone est plus proche du site $s_{i}$ que de tout autre site. Le
+polygone d' influence d'un site $s_{i}$ est obtenu géométriquement en traçant les médiatrices des
+droites joignant si et les autres sites immédiatement voisins et en prenant le plus petit polygone
+contenant $s_{i}$. La zone géographique $\sigma$ est alors partitionnée en polygones, appelés \emph{polygones de
+Thiessen ou de Voronoï ou encore cellules de Dirichlet}. Les sites proches d'autres sites auront
+des polygones d'influence de petites surfaces alors que les sites éloignés des autres sites auront
+de plus grandes surfaces.\\
+Autrement dit\\
+La méthode du polygone de Thiessen permet d'estimer des valeurs pondérées en prenant en considération chaque station pluviométrique. Elle affecte à chaque pluviomètre une zone d'influence dont l'aire, exprimée en $\%$, représente le facteur de pondération de la valeur locale.\\
+
+Les polygones de Thiessen construits, leurs surfaces vont servir à construire 1' estimation
+globale de la moyenne de la variable régionalisée z sur la zone $\sigma$. Celle-ci sera égale à la
+moyenne des valeurs observées sur chaque site pondérées par leur surface d'influence relative.
+
+\begin{equation}
+ EG(T) = \sum_{i=1}^{n} \frac{S_{i}}{S} z(s_{i})
+\end{equation}
+
+où 
+\begin{itemize}
+	\item EG(T):=estimation globale (Thiessen);
+	\item $S_{i}$ est la surface du polygone d'influence du Site s1;
+	\item $S$ la surface de la zone entière $\sigma$ tel que : $S= \sum_{i=1}^{n} S_{i}$
+\end{itemize}
+
+\newpage
+
+\begin{figure}[t]
+	\caption{\label{étiquette} Les polygones de Thiessen de 200 points simulés}
+	\includegraphics[scale=0.9]{poly2.PNG}
+\end{figure}
+
+la figure ci-dessus nous permet de visualiser les polygones de Thiessen de 200 points dont la position a été simulée à partir de plusieurs lois uniformes, permettant ainsi d'obtenir des amas de points. Les zones à forte concentration en points ont des polygones de
+Thiessen de surfaces moindres.
+
+\subsection{La méthode des cellules}
+
+La zone entière $\sigma$ est divisée en cellules rectangulaires. Chaque cellule contient un nombre
+variable de sites. L'inverse de ce nombre sert de coefficient de pondération dans le calcul de
+l'estimation globale.\\
+La procédure se fait donc en 2 étapes :\\
+
+\begin{itemize}
+	\item dans chaque cellule, on calcule la moyenne des valeurs observées sur les sites de la cellule.
+	On obtient alors la moyenne de la cellule ;
+	\item on calcule ensuite la moyenne des moyennes de toutes les cellules, où chaque cellule a le
+	même poids.
+\end{itemize}
+
+Ce qui nous permet de trouver et ceci de manière évidente l'estimation globale de la zone :
+
+\begin{equation}
+ EG(C) =  \frac{1}{N} \sum_{i=1}^{n} \frac{1}{n_{\alpha}} \sum_{i_{\alpha}}^{n_{\alpha}}  z(s_{i_{\alpha}})
+\end{equation}
+
+où 
+\begin{itemize}
+	\item EG(C):=estimation globale (Cellule);
+	\item $s_{i_{\alpha}}$ sont les sites de la cellule $\alpha$;
+	\item $N$ est le nombre de cellules dans la zone $\sigma$ contenant au moins un site d'observation.
+\end{itemize}
+
+
+L'estimation obtenue dépendra de la taille de la cellule. Si les cellules sont trop petites,
+chacune contiendra au plus un point et tous les sites auront le même poids. Si les cellules sont
+trop grandes, un grand nombre de points appartiendront à la même cellule et chacun d'eux aura
+encore le même poids.\\
+Pour cela on pourra faire plusieurs essais en faisant varier la taille de la cellule. Sur une sous zone de l'exemple précédent (200 points simulés), on peut voir sur la figure suivante la répartition des sites dans les 4 cellules carrées de côté 0.05. Le nombre de sites dans chaque cellule varie ici de 0 à 9.
+
+\begin{figure}[h]
+	\caption{\label{étiquette} EG(C) dans une sous zone des 200 points simulés}
+	\includegraphics[scale=0.8]{poly3.PNG}
+\end{figure}
+
+\subsection{La géostatistique transitive }
+
+La géostatistique est l'étude des variables régionalisées, à la frontière entre les mathématiques et les sciences de la Terre. Son principal domaine d'utilisation a historiquement été l'estimation des gisements miniers, mais son domaine d'application actuel est beaucoup plus large et tout phénomène spatialisé peut être étudié en utilisant la géostatistique.\\
+
+La géostatistique transitive s'intéresse essentiellement aux problèmes d'estimation globale.
+Il s'agit de caractériser l'ensemble du champ $\sigma$ par une valeur unique représentative du
+phénomène régionalisé. La première étape consiste à définir un concept approprié pour
+caractériser la variable régionalisée sur $\sigma$. Il faut que ce soit un concept objectif, en ce sens qu'il
+serait disponible si la réalité était connue partout. Ainsi, la moyenne globale est un concept
+objectif car défini sans ambiguïté par la donnée d'un domaine et par la valeur de la variable en
+tous les points de ce domaine.
+\\
+La géostatistique transitive se propose d'estimer non pas la moyenne globale de la variable
+régionalisée $z(s)$ sur le champ $\sigma$, mais son abondance totale :
+\begin{equation}
+	Q = \displaystyle \int_{\sigma} z(s) \, \mathrm{d}s
+\end{equation}
+La moyenne se déduit de l'abondance en divisant par la surface ou le volume de $\sigma$.
+
+\begin{ex}
+	\begin{itemize}
+		\item $z$ est la proportion d'une culture dans un secteur rectangulaire et $Q$ est la surface totale
+		cultivée ;
+		\item $z$ est la concentration de nitrate dans le sol et $Q$ est la quantité dans la zone entière ;
+		\item $z$ est la teneur en métal dans un gisement minier et $Q$ est la quantité de métal associée.
+	\end{itemize}
+\end{ex}
+
+Par convention,\\
+$z(s)=0$ qd $\notin\sigma$
+
+Ce qui nous permet d'écrire logiquement,
+\begin{equation}
+	Q = \displaystyle \int_{\sigma} z(s) \, \mathrm{d}s = \displaystyle \int_{espace} z(s) \, \mathrm{d}s
+\end{equation}
+
+Notons que le
+champ désigne, le support (borné) de la fonction $z$, c'est-à-dire 1' ensemble des points où z est non nulle telle que :
+
+$\sigma = \{ s \in \mathbb{R}^{d} tq z(s) \neq 0\}$
+
+Le problème de 1' estimation globale se formule ainsi : estimer 1' abondance $Q = \displaystyle \int_{\sigma} z(s)$
+d'une fonction $z$ à support $\sigma$ borné (non nécessairement connu), à partir de $n$ sites de mesure
+où la valeur de $z$ est donnée.\\
+
+\textbf{Le covariogramme transitif}
+\begin{enumerate}
+	\item Définition et propriétés mathématiques\\
+	Considérons une variable régionalisée $z$ de champ $\sigma \subset \mathbb{R}^{d}$. On va
+	associer à $z(s)$, fonction qui varie très irrégulièrement dans $\sigma$, une fonction plus simple, appelée
+	covariogramme transitif, et notée traditionnellement $g(h)$.
+	 
+	 \begin{equation}
+	 	g(h) = \displaystyle  z(s)z(s+h) \, \mathrm{d}s
+	 \end{equation}
+	 Le covariogramme transitif a une signification objective : pourvu que l'on connaisse
+	 exhaustivement la variable régionalisée $z$, il est parfaitement calculable dans la totalité du
+	 champ.\\
+	 mathématiquement on parle de covariogramme transitif si les propriétés suivantes sont vérifiées:
+	 \begin{itemize}
+	 	\item $g(h)$ est à support borné, car $z$ est nulle en dehors de $\sigma$ ;
+	 	\item $\forall$ $h, g(h) = g(-h)$ (symétrie);
+	 	\item $\forall$ $h, |g(h)| \leq g(0)$ (inégalité de Schwarz) ;
+	 	\item 	$ \displaystyle  g(h) \, \mathrm{d}s = ( \displaystyle  z(s) \, \mathrm{d}s)^{2} = Q^{2}$
+	 	\item $g(h)$ est de type positif c'est-à-dire qu'il vérifie:\\
+	 	$\forall k \in \mathbb{N}^{*} $, $\forall \lambda_{1}, \cdot, \lambda_{k} \in \mathbb{R}$, $\forall s_{1}, \cdot, s_{k}$ ensemble de $k$
+	 	 sites,
+	 	 \begin{equation}
+	 	 	\sum_{i=1}^{k} \sum_{j=1}^{k} \lambda_{i} \lambda_{j}g(s_{i}-s_{j}) \geq 0
+	 	 \end{equation}
+	 	Cette dernière propriété, très contraignante, est difficile à vérifier en pratique. C'est la raison
+	 	pour laquelle on choisira, parmi un certain nombre de fonctions de type positif.
+	 	
+	 \end{itemize}
+	 \item Portée\\
+	 On appelle portée, dans une direction donnée, la distance au-delà de laquelle le
+	 covariogramme est identiquement nul. C'est une quantité finie car le covariogramme transitif
+	 est à support borné. La portée dans une direction mesure la plus grande dimension de OE dans
+	 cette direction. C'est une quantité purement géométrique, car elle dépend du champ et non de
+	 la variable régionalisée elle-même.
+	 \item Comportement à l'origine
+	 \item Isotropie\\
+	 Le covariogramme transitif est isotrope s'il est identique dans toutes les directions de
+	 l'espace $\mathbb{R}^{d}$, auquel cas il ne dépend que du module $|h|$ de $h$. Dans le cas contraire, il y a \textbf{anisotropie}. Le cas le plus simple est l'anisotropie géométrique, où une simple transformation
+	 linéaire des coordonnées (rotation suivie d'une homothétie) suffit à rétablir l'isotropie : en
+	 dilatant ou en contractant les coordonnées dans la direction d'anisotropie, on retrouve les
+	 conditions isotropes.\\ 
+	 
+\end{enumerate}
+
+\textbf{L'estimation de l'abondance}\\
+Les sites échantillonnés peuvent avoir plusieurs types de configurations dans l'espace $\mathbb{R}^{4}$ :
+ils peuvent être régulièrement répartis, disposés selon un échantillonnage aléatoire stratifié ou
+encore être implantés de manière totalement aléatoire. Dans chaque cas, nous allons examiner comment estimer l'abondance \\
+
+\begin{equation}
+	Q = \displaystyle \int_{\sigma} z(s) \, \mathrm{d}s
+\end{equation}
+\begin{itemize}
+	\item les sites d'observation sont sur une grille régulière\\
+	
+	On suppose que les observations sont réparties sur une grille régulière, que l'on prendra
+	rectangulaire pour plus de commodité. La cellule rectangulaire élémentaire, notée $[a,b ]$ , est
+	définie par les vecteurs orthogonaux a et b. Elle a pour dimension les longueurs $|a|$ et $|b|$.\\
+	Les
+	sites échantillonnés sont repérés par deux indices pet $q$ (entiers relatifs), de la manière suivante:
+	
+	\begin{equation}
+		s_{p+q} = s_{0} + pa +qb, \forall p,q \in \mathbb{Z}
+	\end{equation}
+\end{itemize}
+
+
+\textbf{Définition de l'estimateur}\\
+A partir des mesures $\{ z(s_{0} + pa +qb), p,q \in \mathbb{Z}\}$, l'abondance $Q$ peut être estimée par la
+combinaison linéaire suivante :
+\begin{equation}
+	\hat{Q}(s_{0}) = |a||b| \sum_{p,q \in \mathbb{Z}} z(s_{0} + pa +qb)
+\end{equation}
+
+Le champ $\sigma$ étant borné et $z(s)$ étant nulle en dehors de $\sigma$, la somme ci-dessus ne porte que
+sur un nombre fini de termes non nuls. En pratique, il suffit donc de s'assurer que le réseau de
+prélèvements "déborde" le champ de la variable régionalisée z pour pouvoir calculer $\hat{Q}(s_{0})$.\\
+
+\textbf{Randomisation du réseau d'échantillonnage}\\
+En l'absence de toute information sur les données (zones pauvres, zones riches, ... ), il n'y a
+aucune raison objective de commencer l'échantillonnage en un endroit précis : on a positionné
+d'une manière quelconque l'ensemble du réseau d'échantillonnage $\{ s_{p,q} p,q \in \mathbb{Z} \}$ dans l'espace.\\
+Cela revient à dire que l'origine $s_{0}$ de ce réseau a été implantée "au hasard" dans une cellule
+élémentaire de la grille ; la position de celle-ci peut donc être considérée comme une variable
+aléatoire $S_{0}$, uniformément distribuée dans la surface d'une cellule élémentaire $[a,b]$ de la grille.
+On peut alors considérer:
+\begin{equation}
+	\hat{Q}(s_{0}) = |a||b| \sum_{p,q \in \mathbb{Z}} z(s_{0} + pa +qb)
+\end{equation}
+également comme une variable aléatoire, et en calculer l'espérance et la variance :
+
+\begin{align}
+	E\{ \hat{Q}(s_{0}) \} &= \displaystyle \int_{[a,b]} \hat{Q}(s) \, \mathrm{d}s\frac{1}{|a||b|} \\
+	&= \displaystyle \int_{[a,b]} \sum_{p,q\mathbb{Z}} z(s + pa +qb) \, \mathrm{d}s \\
+	&= \sum_{p,q\mathbb{Z}} \displaystyle \int_{[a,b]} z(s + pa +qb) \, \mathrm{d}s\\
+	&= \displaystyle z(s) \, \mathrm{d}s=Q 
+\end{align}
+
+Le passage de la ligne de $(1.12)$ à $(1.13)$ est possible par continuité.\\
+
+L'estimateur global est donc sans biais:\\
+\begin{equation}
+	E\{ \hat{Q}(s_{0}) \} = Q
+\end{equation}
+Cela signifie que, pour une variable régionalisée z(s) donnée, les erreurs que l'on ferait en
+construisant l' estimateur $\hat{Q}(s_{0}$ pour un grand nombre de grilles, dont l' origine $s_{0}$ est tirée au
+hasard, finiraient par se compenser.
+
+\textbf{Répartition non aléatoire}\\
+
+La démarche qui vient d'être présentée n'est pertinente que si l'implantation des
+échantillons est modélisable de façon appropriée par un processus ponctuel connu. Dans
+le cas d'un échantillonnage non aléatoire, il devient difficile de probabiliser !'estimateur,
+faute de connaître le mode de construction de l'échantillonnage.\\
+Le bon sens voudrait que l'on cherche une homogénéité de la répartition de
+l'information, pour ne pas mélanger des informations de qualité différente. Dans le cas
+d'un échantillonnage irrégulier, on pourra par exemple chercher à diviser le domaine
+d'étude en sous-zones où la reconnaissance des données est homogène. Une autre
+alternative consiste à construire un estimateur du type surfaces d'influence. Il est en effet
+intuitif, pour estimer une abondance à partir d'échantillons répartis de façon irrégulière
+dans r espace, de chercher à pondérer chaque valeur par son importance relative en surface
+par rapport au champ total. Dans le cas précédent, cette pondération provenait de la densité
+du processus ponctuel. Ici, le processus ponctuel est inconnu, et faute de mieux on fait
+appel à la surface d'influence de chaque échantillon.
+\\
+aissant les surfaces d' influence $\epsilon_{i}$ des sites $s_{i}$, l'abondance totale sera estimée
+par:
+\begin{equation}
+\hat{Q} = \sum_{i=1}^{n} \epsilon_{i} z(s_{i})
+\end{equation}
+
+
+
+\chapter{L'estimation globale
+	en géostatistique intrinsèque}
+
+l'estimation globale consiste-t-elle à adopter une formule, en général très simple, pour
+caractériser la variable régionalisée sur $\sigma$ (pour fixer les idées, ce sera le plus souvent la
+moyenne arithmétique des valeurs mesurées, censée caractériser la moyenne exhaustive sur le
+champ $\sigma$), et à calculer la variance de l'erreur associée à cet estimateur, compte tenu du modèle
+proposé et du mode d'échantillonnage. Cette variance est une mesure de la précision de
+l'estimation. L'intérêt de la géostatistique par rapport à la statistique classique est la prise
+en compte de la structure spatiale de la variable régionalisée et de la position des
+observations dans le calcul de la variance d'estimation.\\
+
+\textbf{-) Notations}\\
+Soit $V$ un domaine borné inclus dans le champ $\sigma$ de la variable régionalisée $z$. On note $Z(V)$
+la variable aléatoire obtenue en faisant la moyenne spatiale de $Z(s)$ sur $V$ :\\
+$Z(V) = \frac{1}{|V|}  \displaystyle \int_{v} Z(s) \, \mathrm{d}s$, \\
+
+$Z(V)$ est aussi appelée régularisée de la variable ponctuelle $Z(s)$ sur le support V. Dans le
+cas stationnaire d'ordre deux, $Z(V)$ admet la même espérance que $Z(s)$, et sa variance peut
+s'écrire:\\
+
+$C(V, V) = Var{Z(V)} \frac{1}{|V|^{2}}  \displaystyle \int_{v} \displaystyle \int_{v} C(s-t) \, \mathrm{d}s\mathrm{d}t$, $V \in \sigma$
+
+\textbf{-) Variance d'extension}\\
+
+On appelle variance d'extension d'un domaine $V$ à un domaine $V'$, notée $\sigma^{2}_{E}(V,V')$, la
+variance de la différence $Z(V) -Z(V')$ :\\
+On peut interpréter la différence $Z(V) - Z(V')$ en considérant $Z(V)$ comme une moyenne à
+estimer et $Z(V')$ comme son estimateur; $Z(V)-Z(V')$ est alors l'erreur d'estimation, d'espérance
+nulle (sous réserve de stationnarité d'ordre deux ou intrinsèque) et de variance égale à la
+variance d'extension $\sigma^{2}_{E}(V,V')$.\\
+
+Le formalisme des variances d'extension est le plus général qui soit pour calculer une
+variance d'estimation: $Z(V)$ est la quantité à estimer, et $Z(V')$ son estimateur, sans contrainte
+sur $V$ ni sur $V'$. Le cas qui nous intéresse dans la suite est celui où le domaine $V$ est le champ
+OE de la variable régionalisée et le domaine $V'$ est constitué par les n sites échantillonnés ; $Z(V)$
+est alors la moyenne exhaustive sur le champ $\sigma$ et $Z(V')$ la moyenne arithmétique des
+échantillons :
+
+$Z(V^{'})= \hat{Z} = \frac{1}{n} \sum_{n_{i}}^{n} Z(s_{i})$\\
+
+La formule générale de la variance d'extension s'écrit alors:
+
+\begin{equation}
+	var(Z(\sigma) -\hat{Z} ) = \frac{1}{n^{2}} \sum_{i=1}^{n} \sum_{j=1}^{n} C(s_{i} - s_{j}) - 2 \sum_{i=1}^{n} \frac{1}{n|\sigma|} \displaystyle \int_{\sigma}  C(s_{i}-s) \, \mathrm{d}s + \frac{1}{|\sigma|^{2}} \displaystyle \int_{\sigma} \displaystyle \int_{\sigma}  C(s-t) \, \mathrm{d}s\mathrm{d}t
+\end{equation}
+
+Cette expression ré présente ce que l'on appelle la \textbf{variance d'estimation de $\sigma$} par les
+échantillons $Z(s_{i})$. Conceptuellement, il n'existe pas de différences entre variances d'extension
+et variances d'estimation : la variance d'extension de $v$ à $V$ est simplement la variance
+d'estimation de $Z(V)$ par $Z(v)$.\\ En général, on préfère cependant utiliser la terminologie de
+variance d'extension pour les cas élémentaires, par exemple le cas où l'on étend un échantillon
+à sa zone d'influence. L'expression variance d'estimation est employée pour des situations plus
+générales dans lesquelles les échantillons sont utilisés simultanément pour estimer une quantité
+déterminée, comme la moyenne globale du champ.\\
+L'expression ci-dessus est toutefois difficile à calculer numériquement pour peu que le
+nombre d'échantillons soit important ou que la géométrie de $$\sigma$$ soit compliquée. Nous allons
+voir comment se simplifie cette formule pour certains types d'échantillonnage particuliers.
+
+\subsection{L'estimation globale}
+L'apport de la géostatistique est la prise en compte de la géométrie de l'information et de
+la structure de la variable étudiée dans le calcul d'une variance d'estimation globale "réaliste".
+Il est en effet intuitif de supposer que la précision d'une estimation dépend de ces deux
+paramètres: une variable chaotique donnera lieu à une plus grande imprécision qu'une variable
+régulière. Les différences d'approche que nous allons développer tiennent aux hypothèses faites
+sur le mode d'échantillonnage.
+
+\begin{enumerate}
+	\item Echantillonnage ponctuel aléatoire pur
+	
+Les emplacements des sites échantillonnés sont tirés au hasard, indépendamment les uns des
+autres, et uniformément dans le champ $\sigma$. On cherche à estimer la moyenne exhaustive sur le
+champ $\sigma$:
+
+\begin{equation}
+Z(\sigma)=	\displaystyle \int{\sigma}  Z(s) \, \mathrm{d}s
+\end{equation}	
+par la moyenne des échantillons :\\
+$\hat{Z} =  \frac{1}{n} \sum_{i=1}^{n} Z(s_{i})$\\
+La variance s'exprimera de la manière suivante:
+\begin{equation}
+	var{\hat{Z} -Z(\sigma)} = \frac{D^{2}(o|\sigma)}{n}	
+\end{equation}
+où $D^{2}(o|\sigma)$ désigne la variance de dispersion d'un point dans le domaine $\sigma$.\\
+
+On pourra alors comparer l'équation précédente à celle donnée par la statistique classique $var{\hat{Z}-m} = \frac{\sigma^{2}}{n}$.\\
+en géostatistique, le numérateur de l'expression n'est pas la variance a priori du modèle, mais
+la variance de dispersion d'un point dans le champ ; cette quantité dépend du domaine à estimer
+et ne coïncide avec la variance a priori du modèle que dans le cas particulier d'un domaine
+infiniment grand ou d'un effet de pépite pur : $C(h) = 0$ pour $|h| >O$. Par ailleurs, la variance de
+dispersion peut être définie dans le cadre intrinsèque strict, contrairement à la variance a priori.
+Ainsi, la géostatistique permet d'utiliser une gamme de modèles plus riche que la statistique
+classique, limitée au cadre stationnaire du second ordre.
+
+\item Echantillonnage ponctuel aléatoire stratifié
+
+Le domaine $\sigma$ escoupé en n cellules Vi toutes identiques à une même cellule de référence
+V. On tire au hasard, à l'intérieur de chaque cellule, un échantillon indépendamment des autres
+prélèvements. La variance d'estimation globale est,
+\begin{equation}
+	var{\hat{Z} -Z(\sigma)} = \frac{D^{2}(o|V}{n}	
+\end{equation}
+où $D^{2}(o|V)$ est la variance de dispersion d'un point dans la cellule de référence $V$.
+On peut noter que l'échantillonnage aléatoire stratifié conduit toujours à une variance
+d'estimation inférieure à celle de l'échantillonnage aléatoire pur, puisque, d'après la relation
+d'additivité ouformule de Krige
+$D^{2}(o|V)- D^{2}(o|\sigma)= D^{2}(V|\sigma) \le 0$
+
+\item Echantillonnage ponctuel systématique ou régulier
+
+ici on découpe le domaine $\sigma$ en $n$ cellules $V_{i}$
+toutes identiques à une même cellule de référence $V$ et on échantillonne le point central $s_{i}$ de
+chacune de ces cellules $V_{i}$.\\
+La variance d'obtient par :
+
+\begin{equation}
+	var(Z(\sigma) -\hat{Z} ) = \frac{1}{n^{2}} \sum_{i=1}^{n} \sum_{j=1}^{n} C(s_{i} - s_{j}) - 2 \sum_{i=1}^{n} \frac{1}{n|\sigma|} \displaystyle \int_{\sigma}  C(s_{i}-s) \, \mathrm{d}s + \frac{1}{|\sigma|^{2}} \displaystyle \int_{\sigma} \displaystyle \int_{\sigma}  C(s-t) \, \mathrm{d}s\mathrm{d}t
+\end{equation}
+Cette expression est souvent difficile à calculer lorsque le nombre $n$ d'échantillons est élevé
+ou lorsque la géométrie du champ $\sigma$ est complexe. Pour la simplifier, l'idée est de décomposer\\
+l'erreur d'estimation globale:\\
+$(\hat{Z} -Z(\sigma) = \frac{1}{n} \sum_{i=1}^{n} Z(s_{i}) - Z(\sigma))$\\
+en une somme d'erreurs
+élémentaires $(Z(s_{i})-Z(V_{i}))$, dont il est facile de calculer la variance, et de supposer ces erreurs
+élémentaires non corrélées.\\
+On montre que la variance d'estimation s' écrit :\\
+$var(Z(\sigma) -\hat{Z} ) = \frac{\sigma^{2}_{E}(o, V)}{n}$\\
+où $\sigma^{2}_{E}(o, V)$ est la variance d'extension d'un échantillons $s_{i}$ dans son domaine $V_{i}$:
+
+\end{enumerate}
+
+\newpage
+\subsection{Estimation globale en support non ponctuel}
+
+On suppose à présent que les unités statistiques échantillonnées ne sont plus ponctuelles,
+mais sont des surfaces ou des volumes identiques à un même support de référence v. On fait
+l'hypothèse que le champ $\sigma$ peut être partitionné en cellules qui se déduisent toutes de v par
+translation, et que l'échantillonnage s'opère parmi ces cellules. En particulier, le nombre d'unités
+statistiques à l'intérieur du champ $\sigma$ est fini, contrairement au cas ponctuel, d'où des
+modifications dans les définitions précédentes et des corrections dans certaines formules. Ainsi,
+le nombre de localisations possibles des unités statistiques étant fini, on travaille avec des
+sommes discrètes au lieu d'intégrales: les moyennes sur le champ $\sigma$ ainsi que les variances de
+dispersion et d'extension sont définies par des sommes et non par des intégrales.\\
+
+Si on désigne par v le support de
+l'unité statistique échantillonnée, $n$ le nombre d'échantillons et $N$ le nombre total d'unités
+statistiques dans $\sigma$, alors la variance d'estimation s'exprime par:
+\begin{equation}
+	var(\hat{Z} -\hat{\sigma} ) = \frac{N-n}{N-1} \frac{D^{2} (v|\sigma)}{n}
+\end{equation}
+
+Dans le cas des échantillonnages systématique et stratifié aléatoire avec une unité statistique
+échantillonnée par cellule, les sites d'observation peuvent toujours être considérés comme tirés
+indépendamment les uns des autres, et les relations trouvées précédemment restent valables, à
+condition de remplacer, dans les formules des variances d'extension et de dispersion, le point
+$(o)$ par l'unité statistique $v$.
+
+\subsection{Comparaison avec la statistique descriptive}
+il existe une forte parenté entre les formules de variances
+d'estimation obtenues en géostatistique et celles de la statistique descriptive. Cette dernière
+n'interprète pas les valeurs observées comme des réalisations de variables aléatoires, mais utilise
+les moyennes et variances statistiques calculées sur les échantillons, ce qui permet de prendre
+en compte la non-indépendance des observations. Elle s'affranchit même de l'hypothèse de
+stationnarité, puisqu'il n'y a plus d'interprétation probabiliste des valeurs.\\
+
+\newpage
+Le tableau suivant nous donne un bon récapitulatif:
+\begin{center}
+	\includegraphics[scale=1.07]{bro1.PNG} 
+\end{center}
+
+\textbf{Récapitulatif sur l'estimation globale par les méthodes statistiques et géostatistiques
+}
+
+
+\begin{center}
+	\includegraphics[scale=0.9]{bro2.PNG} 
+	\label{fig3}
+\end{center}
+
+L'unité échantillonnée est une surface (ou un volume) identique à une surface (ou volume)
+de référence $v$, et le nombre de localisations possibles dans le champ est fini.
+
+\begin{center}
+	\includegraphics[scale=0.9]{bro3.PNG} 
+	\label{fig3}
+\end{center}
+
+
+\chapter{L'estimation locale :
+	Le Krigeage et le Cokrigeage}
+
+Le krigeage s'appuie sur l'interprétation de la variable régionalisée comme la réalisation
+d'une fonction aléatoire, dont on suppose modélisée la structure spatiale (covariance ou
+variogramme). Il s'agit en l'occurrence de rechercher, parmi les estimateurs linéaires, celui qui
+présente les "meilleures" propriétés (à savoir absence de biais et variance minimale).
+Mathématiquement, le krigeage n'est, ni plus ni moins, qu'une technique de régression multiple
+qui minjmise l'erreur quadratique moyenne, à partir de données corrélées.
+L'avantage du krigeage sur les techniques d'interpolation déterministes (interpolation
+linéaire ou polynomiale après triangulation de l'espace, splines, ... ) est d'une part qu'il évite de
+commettre des erreurs systématiques dans l'estimation, et d'autre part qu'il fournit une
+variance d'estimation (c'est-à-dire une variance de l'erreur d'estimation, aléatoire dans le
+modèle probabiliste). Signalons dès à présent qu'il ne faut pas confondre la variance
+d'estimation avec un intervalle de confiance sur l'estimation25
+, auquel on a l'habitude de se
+référer. La variance d'estimation constitue quand même un apport non négligeable, car elle
+permet d'apprécier quantitativement la précision de l'estimation.\\
+
+Le krigeage est l?approche géostatistique la plus utilisée pour réaliser des interpolations spatiales. Les techniques de krigeage sont basées sur la définition d?un modèle spatial entre les observations (défini par un variogramme) pour prédire les valeur attributaires d?une variable à des positions où aucun échantillon n'est disponible. Une des spécificités du krigeage est qu?il ne considère pas seulement la distance entre les observations (comme pour les méthodes déterministes) mais qu'il essaye aussi de capturer la structure spatiale des données en comparant deux à deux les observations séparées par des distances spatiales spécifiques. \\
+L'objectif est de comprendre les relations existantes entre les observations séparées par des distances différentes dans l'espace. Toute cette information est prise en compte par le variogramme. Les méthodes de krigeage utilisent cette information pour attribuer un poids à chaque échantillon avant de réaliser les prédictions. Il faut noter que les techniques de krigeage permettent de préserver les valeurs attributaire des échantillons sur la carte interpolée.
+
+Les méthodes de krigeage considèrent que le processus qui a donné naissance aux données peut être séparés en deux composantes principales : une tendance déterministe (les variations à large échelle) et une erreur auto-corrélée (les résidus):
+\begin{equation}
+Z(s)=m+e(s)
+\end{equation}
+
+Où $Z(s)$ est la valeur attributaire à la position $s$ dans la parcelle, $m$ est la tendance déterministe qui ne dépend pas de la position des données dans l'espace et $e(s)$ qui est le terme d?erreur auto-corrélée (qui dépend de la position $s$). A noter que la tendance est déterministe ! Le variogramme est seulement calculé sur les résidus qui sont supposés être auto-corrélés ! En gros, quand on cherche à ajuster un modèle de variogramme aux données, on essaye en réalité d?ajuster ce modèle aux résidus de ces données, après que la tendance ait été enlevée. Attention au fait que, en fonction de la forme du variogramme, la carte interpolée peut être relativement lissée. En fait, si l'effet pépite est forte, les méthodes de \textbf{krigeage} auront tendance à lisser fortement les données pour réduire le bruit dans les parcelles. C'est parfois surprenant parce que l'étendue (écart entre minimum et maximum) des valeurs après krigeage est parfois plus faible que celle des échantillons de départ. Si l?effet pépite est effectivement très fort par rapport au pallier partiel, la structure spatiale est relativement faible et il serait peut être préférable de ne pas interpoler. Les dérivés du krigeage dépendent essentiellement de la façon dont la tendance est caractérisée. Ce point sera discuté en détail plus tard.\\
+
+Grâce à l'utilisation du variogramme, une carte d'erreur peut être dérivée sur l'ensemble de la parcelle parce que les relations entre deux observations séparées par une distance h sont connues. La carte d?erreur est un outil très utile parce qu'elle donne accès à la qualité de la prédiction sur la totalité de la parcelle. Prenez en compte que la qualité de la carte d'erreur dépend bien évidemment de la qualité d?ajustement du modèle de variogramme aux données. Si ce modèle de variogramme n?est pas bien ajusté aux données, il y a de grands risques que la carte d'erreurs ne soit pas fiable. Attention également au fait que l'interpolation par krigeage est aussi sensible aux données aberrantes. Dans ce cas, ces outliers peuvent masquer l'auto-corrélation des données et empêcher la structure spatiale d?être mise en avant. Une solution intuitive serait d?enlever ces données aberrantes avant de réaliser le krigeage. Malgré tout, il est possible que certaines observations semblent aberrantes parce qu'elles sont beaucoup plus faibles ou fortes que le reste des observations. Si ces observations sont regroupées dans l'espace, cela pourrait être dû à un phénomène réellement existant au sein de la parcelle. Dans ce cas là, pour prendre en compte ce phénomène, mais pour ne pas empêcher la structure spatiale d?être découverte, une solution serait de calculer le semi-variogramme sans ces observations extrêmes et ensuite de réaliser le krigeage avec l'ensemble des informations. De cette manière, la structure spatiale serait bien évaluée et les données extrêmes seraient toujours prises en compte dans le jeu de données.
+
+\begin{remarque}
+système et la variance de krigeage prennent en compte:\\
+
+\begin{itemize}
+	\item les distances entre le point à estimer $s_{0}$ et les sites d'observation $s_{i}$ par l'intermédiaire des
+	termes $C(s_{i}-s_{0})$ ou $\gamma(s_{i}-s_{0})$;
+	\item la configuration géométrique des sites d'observation $s_{i}$, par l'intermédiaire des termes $C(s_{i}-s_{0})$ ou $\gamma(s_{i}-s_{0})$;
+	\item la structure spatiale de la variable étudiée, apportée par la covariance $C$ ou le
+	variogramme $\gamma$. A noter que la variance de krigeage ne dépend que de la structure $C$ (ou $\gamma$)
+	et de la configuration de krigeage (c'est-à-dire de la configuration géométrique des sites
+	d'observation) et non des valeurs observées. On peut donc, connaissant $C$ (ou $\gamma$), prévoir la
+	qualité du krigeage avec une configuration donnée des sites d'observation.
+\end{itemize}
+\end{remarque}
+
+\subsection{Krigeage simple}
+Comme le nom le laisse à penser, le krigeage simple est la méthode dérivée du krigeage la plus facile à mettre en oeuvre. Ici, la tendance déterministe, $m$, est connue et considérée constante sur la totalité de la parcelle d'étude.\\
+La figure suivante donne montre un exemple de krigeage simple et tendance et résidus correspondants
+
+\begin{center}
+	\includegraphics[scale=0.9]{bro4.PNG} 
+	\label{fig3}
+\end{center}
+
+Cette méthode est globale parce qu'elle ne prend pas en compte les variations locales de cette tendance. Néanmoins, s'il n'y a pas de changements brusques dans les attributs de la variable d?intérêt (ou s'il n'y a pas de raisons qu'il n'y en ait), cette hypothèse peut être viable et pertinente. Comme la tendance est connue, le terme d'erreur auto-corrélée est lui aussi connu ce qui rend la prédiction plus simple à faire. Il doit être compris que, ici, les valeurs prédites ne peuvent pas s'étendre au-delà des valeurs des échantillons initiaux.
+
+\subsection{Krigeage ordinaire}
+Cette méthode est peut-être l'approche de krigeage la plus largement reportée. Contrairement au krigeage simple, cette technique considère que la tendance est constante mais seulement au niveau d'un voisinage local . Cette hypothèse est intéressante parce qu'elle assure de prendre en compte les variations locales au sein d?une parcelle.\\
+
+On pourrait imaginer par exemple qu'une rupture de pente au sein d'une parcelle serait intéressante à prendre en compte dans l'étude d?une variable d'intérêt.\\
+
+Le krigeage ordinaire peut être exprimé de la façon suivante :\\
+\begin{equation}
+	Z(s)=m(s)+e(s)
+\end{equation}
+
+Ici, la tendance dépend de la position spatiale des observations $(m(s))$. Cette tendance constante est considérée inconnue et doit être déterminée à partir du voisinage de données correspondant.
+
+
+La figure suivante donne montre un exemple de krigeage simple et tendance et résidus correspondants
+
+\begin{center}
+	\includegraphics[scale=0.9]{bro5.PNG} 
+	\label{fig3}
+\end{center}
+Pour cette méthode, il est nécessaire de définir l'étendue du voisinage : le nombre d'observations voisines qui seront prises en compte pour chaque prédiction. Comme la tendance n'est pas considérée connue et qu'elle doive être déterminée par les données elles-mêmes, il peut arriver que, par construction, l'étendue des valeurs prédites soient plus larges sur celle des échantillons de départ.
+
+\subsection{Krigeage universel ou à tendance externe}
+Le krigeage par régression a plusieurs noms : le krigeage universel ou le krigeage avec une tendance externe. Cette méthode est similaire au krigeage ordinaire dans le sens où la tendance n'est pas constante sur la totalité de la parcelle mais dépend de la position des observations dans l'espace. Néanmoins, ici, la tendance est modélisée par une fonction plus complexe, elle n'est pas simplement considérée constante au sein d'un voisinage local. L'objectif est le même que précédemment : enlever la tendance des données pour que les résidus auto-corrélés puissent être étudiés. A la fin de l'interpolation, la tendance est rajoutée aux résidus interpolés.
+
+\begin{center}
+	\includegraphics[scale=0.9]{bro6.PNG} 
+	\label{fig3}
+\end{center}
+Le krigeage par régression est intéressant lorsque l'on dispose d'une variable auxiliaire à haute résolution spatiale et qu'on voudrait avoir plus d?information sur une seconde variable pour laquelle seuls quelques échantillons sont disponibles. En général, cette deuxième variable est pénible, chère ou chronophage à obtenir. Dans ce cas, l'objectif est de modéliser la relation entre cette seconde variable et la variable auxiliaire de manière à améliorer les prédictions de la seconde variable.
+
+Par exemple, l'information de biomasse est relativement facile à acquérir (à partir d'indices de végétation comme le $NDVI$ obtenus avec des images satellites, avions ou drone). On pourrait imaginer utiliser cette variable auxiliaire pour aider à interpoler des observations de rendement collectées à une résolution spatiale beaucoup plus grossière pendant une campagne de terrain).
+
+A noter que si la relation entre ces deux variables est faible, le krigeage par régression reviendra à réaliser un krigeage simple ou un krigeage ordinaire.
+
+\subsection{Co-Krigeage}
+
+Lorsque l'on dispose d'une variable auxiliaire $V0$ avec une haute résolution spatiale et que l'on cherche à capturer la variabilité ou la corrélation spatiale d'une seconde variable $V1$, le co-krigeage est particulièrement intéressant.\\
+ En fait, l'objectif est d'évaluer la structure spatiale de $V1$ par rapport à $V0$ avec les échantillons à disposition et d?interpoler la structure spatiale caractérisée sur l'ensemble de la parcelle. Comme il l'a été dit précédemment, $V1$ est généralement chronophage et coûteux à obtenir et il est beaucoup plus simple d?utiliser une variable auxiliaire pour améliorer les prédictions de $V1$. Le co-krigeage demande à l'utilisateur de calculer un cross-variogramme et d'y ajuster un modèle de variogramme. Dans ce cas, l'idée n'est pas d'étudier l'évolution de la variance d'une variable pour des distances spécifiques entre observations mais plutôt d?étudier l'évolution de la covariance de $V1$ par rapport à $V0$ pour ces distances spatiales particulières.\\ En d'autres termes, on regarde comme la structure spatiale de $V1$ évolue par rapport à $V0$. On peut rajouter que le cross-variogramme est également un outil utile pour vérifier si deux variables sont corrélées spatialement ou si elles présentent une structure spatiale similaire. Dans ce cas-là, les deux variables peuvent avoir été acquises avec une haute résolution spatiale parce que l'objectif n'est plus de les interpoler mais de les comparer l'une par rapport à l'autre. Le co-krigeage est plus difficile à mettre en place que les autres techniques de krigeage mais il peut s?avérer plus efficace si les structures spatiales sont correctement déterminées.
+
+\subsection{Krigeage par point et krigeage par bloc}
+Toutes les méthodes de krigeage mentionnées précédemment ont pour vocation de prédire la valeur d'une variable d'intérêt à des positions où aucun échantillon n'est disponible. Ces positions peuvent être considérées comme des points dans l'espace (ou plus précisément comme des pixels de la grille d'interpolation avec un pixel = une valeur). Par conséquent, ces approches de krigeage peuvent être comprises comme des méthodes de krigeage par point. Quand l'incertitude de la prédiction est relativement large, on pourrait vouloir chercher à lisser les résultats interpolées en réalisant un krigeage sur une surface plus large qu'un tout petit pixel. Ce type de krigeage est connu sous le nom de krigeage par bloc. Cela a l'avantage de diminuer la variance de l'erreur de prédiction parce que l'information est plus grossière (elle est prédite sur un support spatial plus grand). Bien évidemment, avec le block kriging, il y a un risque de perdre de l'information utile mais quand l'incertitude est forte, cette approche peut être très pertinente.
+
+Avant de terminer ce post, il est important de préciser que toutes les techniques d'interpolation qui ont été présentées produisent des résultats relativement similaires dans les cas idéaux (beaucoup d'échantillons disponibles et bien disposés dans la parcelle, peu de bruit dans les données et pas de variations brusques au sein de la parcelle). Néanmoins, quand ces conditions ne sont pas respectées, les méthodes géostatistiques sont intéressantes parce qu'elles permettent de capturer la structure spatiale sur l'ensemble de la parcelle, ce qui conduit généralement à des prédictions plus précises. Ces méthodes sont plus difficiles à mettre en place parce qu'il est nécessaire de construire un modèle spatial et de l'ajuster aux données mais cela peut permettre de mieux caractériser les parcelles. Encore une fois, je recommanderais de toujours garder une étape manuelle dans la mise en place d'approches géostatistiques parce que les résultats pourraient paraître étrange si les modèles spatiaux ne sont pas correctement ajustés aux données. Quand la structure spatiale est faible (lorsque le bruit est important), presque toutes les méthodes d'interpolation auront tendance à lisser les données dans une plus ou moins grande mesure. Cela doit être gardé à l'esprit avant d'interpoler des observations spatiales parce que les cartes interpolées pourraient paraître plus homogènes qu'elles ne le sont vraiment. On peut rajouter que les techniques d?interpolation peuvent être également utilisées pour sous-échantillonner (le plus souvent) ou sur-échantillonner une image ou une carte. L'objectif est de changer la résolution d?une carte ou d'une image disponible.
+
+
+
+
+
+
+
+\begin{thebibliography}{99}\addstarredchapter{Bibliographie}
+
+\bibitem{1} Thibault LAURENT, \emph{Statistique spatiale avec R}  
+\bibitem{2} \emph{Internet} 		
+\bibitem{3} Michel ARNAUD,Xavier EMERY,  \emph{Estimation et interpolation de données spatiales}
+\bibitem{4} Sébastien Rochette \emph{modélisation et cartographie}
+\bibitem{5} \emph{Wikipedia} 
+	
+	
+\end{thebibliography}
+
+
+
+\end{document}
